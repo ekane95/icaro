@@ -11,12 +11,14 @@ import { HomeComponent } from './home/home.component';
 import { routing } from './router/route-routing';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { NavigationModule } from 'patternfly-ng';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
