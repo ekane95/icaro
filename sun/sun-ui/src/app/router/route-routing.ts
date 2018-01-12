@@ -24,7 +24,7 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   // otherwise redirect to home
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 export const routing = RouterModule.forRoot(routes);
