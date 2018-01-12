@@ -12,6 +12,7 @@ import { routing } from './router/route-routing';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { NavigationModule, CardModule } from 'patternfly-ng';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileService } from './services/profile.service';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomeComponent, ProfileComponent],
@@ -24,7 +25,7 @@ import { ProfileComponent } from './profile/profile.component';
     NavigationModule,
     CardModule
   ],
-  providers: [AuthenticationService, AuthenticationGuard],
+  providers: [AuthenticationService, AuthenticationGuard, ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
