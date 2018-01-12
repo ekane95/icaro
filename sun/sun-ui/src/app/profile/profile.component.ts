@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.config = {
       noPadding: false,
-      topBorder: false
+      topBorder: true
     } as CardConfig;
   }
 }

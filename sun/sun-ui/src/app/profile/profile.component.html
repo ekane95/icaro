@@ -1,118 +1,43 @@
 <div class="padding-15">
-    <div class="cards-pf">
-        <div class="row row-cards-pf">
-            <div class="col-sm-4">
-                <pfng-card class="custom-card" [config]="config" [headerTemplate]="spacesHeaderTemplate">
-                    <ng-template #spacesHeaderTemplate>
-                        <div class="card-pf-heading">
-                            <h2 class="card-pf-title">
-                                <span class="pficon pficon-user status-info">
-                                    <span class="ng-binding">Information</span>
-                                </span>
-                            </h2>
-                        </div>
-                        <div class="card-pf-body">
-                            <p> </p>
-                            <dl>
-                                <dt class="ng-binding">Name</dt>
-                                <dd ng-show="profileInfo.name" class="ng-binding"> demo</dd>
-                                <dd ng-hide="profileInfo.name" class="ng-hide">-</dd>
-                                <dt class="ng-binding">Company</dt>
-                                <dd ng-show="profileInfo.company" class="ng-binding">Demo Corp.</dd>
-                                <dd ng-hide="profileInfo.company" class="ng-hide">-</dd>
-                                <dt class="ng-binding">VAT</dt>
-                                <dd ng-show="profileInfo.piva" class="ng-binding">02148460419</dd>
-                                <dd ng-hide="profileInfo.piva" class="ng-hide">-</dd>
-                                <dt>UUID</dt>
-                                <dd class="dd-border ng-binding" ng-show="profileInfo.uuid">e6dfe658-45d0-11e2-be05-00163e2f</dd>
-                                <dd class="dd-border ng-hide" ng-hide="profileInfo.uuid">-</dd>
-                                <dt>Login</dt>
-                                <dd ng-show="profileInfo.username" class="ng-binding">demo</dd>
-                                <dd ng-hide="profileInfo.username" class="ng-hide">-</dd>
-                                <dt>Email</dt>
-                                <dd ng-show="profileInfo.email" class="ng-binding">supporto@nethesis.it</dd>
-                                <dd ng-hide="profileInfo.email" class="ng-hide">-</dd>
-                            </dl>
-                            <p></p>
-                        </div>
-                        <div class="card-pf-footer">
-                            <div class="dropdown card-pf-time-frame-filter">
-                                <button  class="btn btn-default" data-toggle="modal" data-target="#about-modal" class="btn btn-default ng-binding">
-                                    Change password </button>
-                            </div>
-                            <p>
-                                <a href="#/dashboard" class="card-pf-link-with-icon">
-                                    <span class="fa fa-tachometer"></span>Dashboard </a>
-                            </p>
-                        </div>
-                    </ng-template>
-                </pfng-card>
-            </div>
-            <div class="col-sm-4">
-                <pfng-card class="custom-card" [config]="config" [headerTemplate]="itemsHeaderTemplate">
-                    <ng-template #itemsHeaderTemplate>
-                        <h2 class="card-pf-title">Preferences
-                            <select class="col-xs-3 col-sm-6 form-control custom-card-combobox">
-                                <option value="default">Select a space to work with...</option>
-                                <option value="osio">OSIO</option>
-                            </select>
-                        </h2>
-                    </ng-template>
-                </pfng-card>
-            </div>
-        </div>
-    </div>
+	<div class="cards-pf">
+		<div class="row row-cards-pf">
+			<div class="col-sm-4">
+				<!-- Profile card -->
+				<pfng-card class="custom-card" [config]="config">
+					<!-- Profile Title -->
+					<div class="card-pf-heading">
+						<h2 class="card-pf-title">
+							<span class="pficon pficon-user status-info"></span>
+							&nbsp;Information
+						</h2>
+					</div>
+					<!-- Username info -->
+					<div class="card-pf-body">
+						<dl>
+							<dt>Name</dt>
+							<dd><!-- Username here --></dd>
+						</dl>
+					</div>
+					<!-- Change password modal button -->
+					<div class="card-pf-footer">
+						<div class="dropdown card-pf-time-frame-filter">
+							<button class="btn btn-default" data-toggle="modal" data-target="#change-passowrd" class="btn btn-default">
+								Change password
+							</button>
+						</div>
+					</div>
+				</pfng-card>
+			</div>
+		</div>
+		<div class="row row-cards-pf">
+			<div class="col-sm-4">
+				<pfng-card class="custom-card">
+					<h2 class="card-pf-title">
+						<span class="fa fa-wrench status-info"></span>
+						&nbsp;Preferences
+					</h2>
+				</pfng-card>
+			</div>
+		</div>
+	</div>
 </div>
-
-
-<!--Modal zone  -->
-<div class="modal fade" id="about-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content about-modal-pf">
-            <div class="modal-header bottom-server-alarm">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    <span class="pficon pficon-close"></span>
-                </button>
-                <h4 class="modal-title ng-binding" id="myModalLabel">Change password</h4>
-            </div>
-            <form name="changePass" class="form-horizontal ng-pristine ng-valid" ng-submit="changePassword(oldPassword, newPassword)">
-                <div class="modal-body">
-                    <!-- ngIf: badPassword -->
-                    <div class="form-group">
-                        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-12 control-label ng-binding" for="newUnit-label">Current password</label>
-                        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
-                            <input placeholder="Current password" class="form-control input input-text ng-pristine ng-untouched ng-valid"
-                                ng-model="oldPassword" id="password-change" type="password"> </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-12 control-label ng-binding" for="newUnit-label">New password</label>
-                        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
-                            <input placeholder="New password" class="form-control input input-text ng-pristine ng-untouched ng-valid"
-                                ng-model="newPassword" id="password-change" type="password"> </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-12 control-label ng-binding" for="newUnit-label">Confirm new password</label>
-                        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
-                            <input placeholder="Confirm new password" class="form-control input input-text ng-pristine ng-untouched ng-valid"
-                                ng-model="confirmPassword" id="password-change" type="password"> </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-12 control-label" for="newUnit-label"></label>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                            <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                                    aria-valuemax="100" style="width: 100%">
-                                    <span class="sr-only"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default ng-binding" data-dismiss="modal">Cancel</button>
-                    <button ng-disabled="confirmPassword !== newPassword || confirmPassword.length == 0"
-                        type="submit" class="btn btn-primary ng-binding" disabled="disabled">Save</button>
-                </div>
-            </form>
-        </div>
-    </div>
