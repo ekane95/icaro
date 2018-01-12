@@ -12,12 +12,14 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthenticationGuard]
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AuthenticationGuard]
+    canActivate: [AuthenticationGuard],
+    children: [
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [AuthenticationGuard]
+      }
+    ]
   },
 
   { path: 'login', component: LoginComponent },
