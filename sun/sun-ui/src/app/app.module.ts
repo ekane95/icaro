@@ -1,3 +1,4 @@
+import { HeaderService } from './header/header.service';
 import { AuthenticationService } from './services/authentication.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -25,7 +26,7 @@ import { ProfileService } from './services/profile.service';
     NavigationModule,
     CardModule
   ],
-  providers: [AuthenticationService, AuthenticationGuard, ProfileService],
+  providers: [AuthenticationService, AuthenticationGuard, ProfileService, HeaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
