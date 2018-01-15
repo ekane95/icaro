@@ -1,7 +1,51 @@
-.cards-pf .row-cards-pf {
-     padding: 0; 
+.cards-pf .row-cards-pf:first-child {
+	padding: 0;
 }
 
-.cards-pf .row-cards-pf:first-child {
-     padding-top: 0; 
+.cards-pf .row-cards-pf {
+	padding: 0;
+}
+
+.card-pf-body {
+	margin: 20px 0 0 0; 
+	padding: 0; 
+}
+
+.card-pf-body dl {
+	padding-bottom: 20px;
+}
+
+.pfng-card .card-pf-footer {
+	min-height: 55px!important;
+	padding: 15px 20px;
+}
+
+
+.modal {
+	font-size: 12px;
+}
+
+.modal-title {
+	color: #313131;
+}
+
+.modal-header {
+	border-bottom: 4px solid #39A5DC;
+}
+
+.form-horizontal .form-control {
+	width: 65%;
+}
+
+.progress-bar {
+	width: 100%;
+}
+
+.progress-bar-danger:hover {
+	background-color: rgba(204,0,0,.6);
+	cursor: pointer;
+}
+
+.fade.in {
+	background: rgba(0, 0, 0, 0.6);
 }
