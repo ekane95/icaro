@@ -1,23 +1,27 @@
 <!-- Topbar and vertical navigation content -->
 <div id="verticalNavLayout" class="layout-pf layout-pf-fixed faux-layout">
-	<pfng-vertical-navigation
-	[items]="navigationItems"
-	(onItemClickEvent)="onItemClicked($event)"
-	(onNavigationEvent)="onNavigation($event)"
-	[brandSrc] = "logo"
-	[brandAlt] = "mainTitle"
-	[showBadges]="true"
-	[hiddenIcons]="false"
-	[persistentSecondary]="false"
-	[updateActiveItemsOnClick]="true"
-	[pinnableMenus]="true">
-	<div>
-	<!-- Topbar menu with icons -->
+	<!-- Topbar menu -->
+	<nav class="navbar navbar-pf-vertical">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" (click)="toggleOnClick = !toggleOnClick">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="/" class="navbar-brand">
+				<img class="navbar-brand-icon" [src]="logo" [alt]="mainTitle"/>
+			</a>
+		</div>
+		<!-- Topbar menu with icons -->
 		<ul class="nav navbar-nav navbar-right navbar-iconic">
 			<li class="dropdown">
 				<!-- User info -->
 				<a class="dropdown-toggle nav-item-iconic" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					<span class="username">
+						{{email}}
+					</span>
+					<span class="account-type">
 						{{account_type | uppercase}}
 					</span>
 					<span class="caret"></span>
@@ -63,9 +67,13 @@
 				</ul>
 			</li>
 		</ul>
-	</div>
-	</pfng-vertical-navigation>
-	<div class="container-fluid container-cards-pf container-pf-nav-pf-vertical example-page-container nav-pf-vertical-with-badges" id="contentContainer">
+	</nav>
+
+	<!-- Sidebar menu content -->
+	<div class="nav-pf-vertical nav-pf-vertical-with-sub-menus nav-pf-persistent-secondary" [style.width] = "toggleSidebar()"></div>
+
+	<!-- Main content -->
+	<div class="container-fluid container-cards-pf container-pf-nav-pf-vertical" id="contentContainer" [style.marginLeft] = "toggleSidebar()">
 		<router-outlet></router-outlet>
 	</div>
 </div>
