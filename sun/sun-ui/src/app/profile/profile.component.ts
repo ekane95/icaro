@@ -15,10 +15,11 @@ export class ProfileComponent implements OnInit {
   config: CardConfig;
   model: any = {};
   items: any[] = [];
-  account: Account = {};
-  fullAccount: AccountFull = {};
-  password: string;
-  constructor(private profileService: ProfileService) { }
+  account: any = {};
+  fullAccount: any = {};
+  preferenceArray: any[] = [];
+
+  constructor(private profileService: ProfileService) {}
 
   ngOnInit() {
     this.config = {
@@ -26,6 +27,7 @@ export class ProfileComponent implements OnInit {
       topBorder: true
     } as CardConfig;
     this.getAllAccounts();
+    this.getPreferences();
   }
 
   private postAccount() {
@@ -38,11 +40,14 @@ export class ProfileComponent implements OnInit {
     this.fullAccount.type = 'type1';
 
     this.profileService.postAccount(this.fullAccount).subscribe(
-      data => { console.log(data) },
-      error => { console.log(error) }
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
     );
   }
-
 
   private changePassword(f: NgForm) {
     this.account.email = 'mikel@hotmail.com';
@@ -51,8 +56,12 @@ export class ProfileComponent implements OnInit {
     this.account.password = this.model.newpassword;
 
     this.profileService.changePassword(this.account).subscribe(
-      data => { console.log(data) },
-      error => { console.log(error) }
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
     );
   }
 
@@ -69,6 +78,19 @@ export class ProfileComponent implements OnInit {
       error => {
         console.log(error.json());
       }
+    );
+  }
+
+  private getPreferences() {
+    this.profileService.getPreferences().subscribe(
+      data => {
+        let myArray = [];
+        for (let key in error) {
+          myArray.push(data[key]);
+        }
+        this.preferenceArray = myArray;
+      },
+      error => {}
     );
   }
 }
