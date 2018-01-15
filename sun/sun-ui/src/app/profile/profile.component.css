@@ -1,5 +1,5 @@
 .cards-pf .row-cards-pf:first-child {
-	padding: 0;
+	padding-top: 10px;
 }
 
 .cards-pf .row-cards-pf {
@@ -18,4 +18,12 @@
 .pfng-card .card-pf-footer {
 	min-height: 55px!important;
 	padding: 15px 20px;
+}
+
+.no-data {
+	padding-bottom: 20px!important;
+}
+
+.alert {
+	margin-bottom: 0px;
 }

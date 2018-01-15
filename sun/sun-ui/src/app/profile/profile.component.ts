@@ -15,7 +15,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ProfileComponent implements OnInit {
   config: CardConfig;
   model: any = {};
-  items: any[] = [];
+  accountArray: any[] = [];
   account: any = {};
   fullAccount: any = {};
   preferenceArray: any[] = [];
@@ -40,9 +40,9 @@ export class ProfileComponent implements OnInit {
   }
 
   private postAccount() {
-    this.fullAccount.email = 'mikel@hotmail.com';
-    this.fullAccount.name = 'Mikel';
-    this.fullAccount.username = 'Mikel';
+    this.fullAccount.email = 'test@hotmail.com';
+    this.fullAccount.name = 'Test';
+    this.fullAccount.username = 'Test';
     this.fullAccount.uuid = '29';
     this.fullAccount.hotspotid = '29';
     this.fullAccount.password = 'password';
@@ -61,11 +61,8 @@ export class ProfileComponent implements OnInit {
   private getAccount() {
     this.profileService.getAccount(5).subscribe(
       data => {
-        let myArray = [];
-        for (let key in data) {
-          myArray.push(key, data[key]);
-        }
-        this.items = myArray;
+        this.accountArray = data;
+        console.log(data);
       },
       error => {
         console.log(error.json());

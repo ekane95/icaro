@@ -27,19 +27,26 @@ export class ChangePasswordModalComponent implements OnInit {
   }
 
   private changePassword(changepasswordform: NgForm) {
-    this.account.email = 'mikel@hotmail.com';
-    this.account.name = 'Mikel';
-    this.account.username = 'Mikel';
+    this.account.email = 'test@hotmail.com';
+    this.account.name = 'test';
+    this.account.username = 'test';
     this.account.password = this.model.newPassword;
     this.account.id = this.model.idaccount;
     this.profileService.changePassword(this.account).subscribe(
       data => {
         this.apiResponse = data.status;
         changepasswordform.reset();
+        this.passwordLength = 0;
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  private resetFields(changepasswordform: NgForm) {
+    changepasswordform.reset();
+    this.passwordLength = 0;
+    this.apiResponse = '';
   }
 }

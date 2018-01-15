@@ -15,24 +15,12 @@
 					<div class="card-pf-body">
 						<dl>
 							<dt>Name</dt>
-							<dd><!-- Name here --></dd>
-
-							<dt>Company</dt>
-							<dd><!-- company here --></dd>
-
-							<dt>VAT</dt>
-							<dd> <!-- write here --> </dd>
-
+							<dd>{{accountArray.name}}</dd>
 							<dt>UUID</dt>
-							<dd> <!-- write here --> </dd>
-
+							<dd> {{accountArray.uuid}}</dd>
 							<hr>
-
-							<dt>Login</dt>
-							<dd> <!-- write here --> </dd>
-
 							<dt>Email</dt>
-							<dd> <!-- write here --> </dd>
+							<dd> {{accountArray.email}} </dd>
 						</dl>
 					</div>
 					<!-- Change password modal button -->
@@ -57,8 +45,11 @@
 					</div>
 					<!-- Preferences info -->
 					<div class="card-pf-body">
-						<dl>
-							<dd *ngIf="!preferenceArray?.length > 0">Empty</dd>
+						<dl class="no-data">
+							<div *ngIf="!preferenceArray?.length > 0" class="alert alert-warning alert-dismissable">
+								<span class="pficon pficon-warning-triangle-o"></span>
+								<strong>No data found!</strong>
+							</div>
 						</dl>
 					</div>
 				</pfng-card>
