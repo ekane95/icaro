@@ -2,6 +2,7 @@ import { ProfileService } from './../services/profile.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './../services/authentication.service';
+import { apConfig } from '../../global';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -11,6 +12,8 @@ import { AuthenticationService } from './../services/authentication.service';
 })
 export class HomeComponent implements OnInit {
   toggleOnClick: true;
+  mainTitle = apConfig.MAIN_TITLE;
+  logo = apConfig.LOGO_URL;
   public account_type = localStorage.getItem('account_type');
   email: string;
   constructor(
