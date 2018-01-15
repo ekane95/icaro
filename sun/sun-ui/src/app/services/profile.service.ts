@@ -16,9 +16,19 @@ export class ProfileService {
   /**
    * Get Accounts list from API
    */
-  getAccounts() {
+  getAllAccounts() {
     return this.http
       .get(this.apiAccountsUrl, this.headerService.setHeader())
+      .map(res => res.json());
+  }
+
+  /**
+   * Get Account in base of id
+   * @param id
+   */
+  getAccount(id: number) {
+    return this.http
+      .get(this.apiAccountsUrl + '/' + id, this.headerService.setHeader())
       .map(res => res.json());
   }
 
