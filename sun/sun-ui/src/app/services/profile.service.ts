@@ -26,7 +26,7 @@ export class ProfileService {
    * Make the callwhich change password
    * @param account
    */
-  changePassword(account: Account) {
+  changePassword(account: any) {
     let body = JSON.stringify(account);
     return this.http
       .put(

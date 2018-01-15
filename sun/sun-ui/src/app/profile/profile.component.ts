@@ -4,6 +4,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CardConfig, InfoStatusCardConfig } from 'patternfly-ng';
 import { Account, AccountFull } from '../interfaces/account';
 import { error } from 'util';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -18,8 +19,16 @@ export class ProfileComponent implements OnInit {
   account: any = {};
   fullAccount: any = {};
   preferenceArray: any[] = [];
+  passwordLength: number;
+  apiResponse: string;
 
-  constructor(private profileService: ProfileService) {}
+  constructor(
+    private profileService: ProfileService,
+    private activateroute: ActivatedRoute,
+    private router: Router
+  ) {
+    this.passwordLength = 0;
+  }
 
   ngOnInit() {
     this.config = {
@@ -28,6 +37,10 @@ export class ProfileComponent implements OnInit {
     } as CardConfig;
     this.getAllAccounts();
     this.getPreferences();
+  }
+
+  private getPasswordLenth(value: string = '') {
+    this.passwordLength = value.length;
   }
 
   private postAccount() {
@@ -49,15 +62,17 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  private changePassword(f: NgForm) {
+  private changePassword(changepassowdform: NgForm) {
     this.account.email = 'mikel@hotmail.com';
     this.account.name = 'Mikel';
     this.account.username = 'Mikel';
-    this.account.password = this.model.newpassword;
-
+    this.account.password = this.model.newPassword;
+    this.account.id = this.model.idaccount;
     this.profileService.changePassword(this.account).subscribe(
       data => {
-        console.log(data);
+        this.apiResponse = data.status;
+        this.getAllAccounts();
+        changepassowdform.reset();
       },
       error => {
         console.log(error);
