@@ -11,20 +11,26 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { routing } from './router/route-routing';
 import { AuthenticationGuard } from './guards/authentication.guard';
-import { NavigationModule, CardModule } from 'patternfly-ng';
+import { PatternFlyNgModule } from 'patternfly-ng';
 import { ProfileComponent } from './profile/profile.component';
+import { ChangePasswordModalComponent } from './modals/change-password-modal/change-password-modal.component';
 import { ProfileService } from './services/profile.service';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, ProfileComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HomeComponent,
+    ProfileComponent,
+    ChangePasswordModalComponent
+  ],
   imports: [
     BrowserModule,
     routing,
     HttpClientModule,
     HttpModule,
     FormsModule,
-    NavigationModule,
-    CardModule
+    PatternFlyNgModule
   ],
   providers: [AuthenticationService, AuthenticationGuard, ProfileService, HeaderService],
   bootstrap: [AppComponent]
