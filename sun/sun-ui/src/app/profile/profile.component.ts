@@ -39,10 +39,6 @@ export class ProfileComponent implements OnInit {
     this.getPreferences();
   }
 
-  private getPasswordLenth(value: string = '') {
-    this.passwordLength = value.length;
-  }
-
   private postAccount() {
     this.fullAccount.email = 'mikel@hotmail.com';
     this.fullAccount.name = 'Mikel';
@@ -55,24 +51,6 @@ export class ProfileComponent implements OnInit {
     this.profileService.postAccount(this.fullAccount).subscribe(
       data => {
         console.log(data);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
-  private changePassword(changepassowdform: NgForm) {
-    this.account.email = 'mikel@hotmail.com';
-    this.account.name = 'Mikel';
-    this.account.username = 'Mikel';
-    this.account.password = this.model.newPassword;
-    this.account.id = this.model.idaccount;
-    this.profileService.changePassword(this.account).subscribe(
-      data => {
-        this.apiResponse = data.status;
-        this.getAllAccounts();
-        changepassowdform.reset();
       },
       error => {
         console.log(error);

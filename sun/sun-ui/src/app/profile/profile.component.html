@@ -3,7 +3,7 @@
 		<div class="row row-cards-pf">
 			<div class="col-sm-4">
 				<!-- Profile card -->
-				<pfng-card class="custom-card" [config]="config">
+				<pfng-card class="custom-card">
 					<!-- Profile Title -->
 					<div class="card-pf-heading">
 						<h2 class="card-pf-title">
@@ -23,7 +23,7 @@
 					<!-- Change password modal button -->
 					<div class="card-pf-footer">
 						<div class="dropdown card-pf-time-frame-filter">
-							<button class="btn btn-default" data-toggle="modal" data-target="#change-passowrd" class="btn btn-default">
+							<button class="btn btn-default" data-toggle="modal" data-target="#change-password" class="btn btn-default">
 								Change password
 							</button>
 						</div>
@@ -33,7 +33,7 @@
 		</div>
 		<div class="row row-cards-pf">
 			<div class="col-sm-4">
-				<pfng-card class="custom-card" [config]="config">
+				<pfng-card class="custom-card">
 					<div class="card-pf-heading">
 						<h2 class="card-pf-title">
 							<span class="fa fa-wrench status-info"></span>
@@ -43,7 +43,6 @@
 					<!-- Preferences info -->
 					<div class="card-pf-body">
 						<dl>
-							<dt></dt>
 							<dd *ngIf="!preferenceArray?.length > 0">Empty</dd>
 						</dl>
 					</div>
@@ -52,65 +51,6 @@
 		</div>
 	</div>
 
-	<!-- Modal -->
-	<div class="modal fade" id="change-passowrd" tabindex="-1" role="dialog" aria-labelledby="ChangePassword" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-						<span class="pficon pficon-close"></span>
-					</button>
-					<h4 class="modal-title">Change password {{passwordLendth}}</h4>
-				</div>
-				<div class="modal-body">
-					<form class="form-horizontal" (ngSubmit)="changePassword(changepassform)" role="form" #changepassform="ngForm" name="changePasswordForm">
-						<div class="form-group">
-
-							<!-- <input type="hidden" id="id" name="idaccount" [(ngModel)]="model.idaccount" [value]="5"  #idaccount="ngModel" class="form-control"
-							 placeholder="Current Password"> -->
-
-							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-12 control-label" for="old-password">Current Password</label>
-							<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
-								<input type="password" id="old-password" name="oldPassword" [(ngModel)]="model.oldPassword" #oldPassword="ngModel" class="form-control"
-								 placeholder="Current Password">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-12 control-label" for="new-password">New Password</label>
-							<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
-								<input type="password" id="new-password" name="newPassword" [(ngModel)]="model.newPassword" #newPassword="ngModel" class="form-control"
-								 placeholder="New Password">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-12 control-label" for="confirm-new-password">Confirm New Password</label>
-							<div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
-								<input (keyup)="getPasswordLenth(confirmNewPassword.value)" type="password" id="confirm-new-password" name="confirmNewPassword" [(ngModel)]="model.confirmNewPassword" #confirmNewPassword="ngModel"
-								 class="form-control" placeholder="Confirm New Password">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-12 control-label" for="progressbar"></label>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-								<div class="progress progress-xs">
-									<div [ngClass]="{'progress-bar-danger': confirmNewPassword.value !== newPassword.value || passwordLength===0}" class="progress-bar progress-bar-success"   role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-										<span class="sr-only"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button class="btn btn-default" data-dismiss="modal" name="CancelPasswordChange">Cancel</button>
-						<button [disabled]="confirmNewPassword.value !== newPassword.value || passwordLength===0" class="btn btn-default"
-							 type="submit" name="SavePasswordChange">Save</button>
-						</div>
-						{{apiResponse}}
-					</form>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-
+	<!-- Change password Modal -->
+	<app-change-password-modal></app-change-password-modal>
 </div>
