@@ -49,9 +49,9 @@ export class HomeComponent implements OnInit {
    */
   toggleSidebar() {
     if (this.toggleOnClick) {
-      return '180' + 'px';
+      return '185' + 'px';
     } else {
-      return '40' + 'px';
+      return '75' + 'px';
     }
   }
 }

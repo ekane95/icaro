@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
       noPadding: false,
       topBorder: true
     } as CardConfig;
-    this.getAllAccounts();
+    this.getAccount();
     this.getPreferences();
   }
 
@@ -58,15 +58,14 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  private getAllAccounts() {
-    this.profileService.getAccounts().subscribe(
+  private getAccount() {
+    this.profileService.getAccount(5).subscribe(
       data => {
         let myArray = [];
         for (let key in data) {
-          myArray.push(data[key]);
+          myArray.push(key, data[key]);
         }
         this.items = myArray;
-        console.log(this.items);
       },
       error => {
         console.log(error.json());
