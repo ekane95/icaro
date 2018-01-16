@@ -62,3 +62,8 @@ hr {
 .i18n {
 	visibility: hidden;
 }
+
+.container-cards-pf {
+	height: 100%;
+	overflow: auto;
+}
