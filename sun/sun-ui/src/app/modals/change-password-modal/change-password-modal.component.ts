@@ -31,7 +31,7 @@ export class ChangePasswordModalComponent implements OnInit {
     this.account.name = 'test';
     this.account.username = 'test';
     this.account.password = this.model.newPassword;
-    this.account.id = this.model.idaccount;
+    this.account.id = 5;
     this.profileService.changePassword(this.account).subscribe(
       data => {
         this.apiResponse = data.status;
