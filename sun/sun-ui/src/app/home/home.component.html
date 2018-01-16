@@ -70,35 +70,35 @@
 		</ul>
 	</nav>
 
-	<!-- Left menu content -->
-	<div class="nav-pf-vertical nav-pf-vertical-with-sub-menus nav-pf-persistent-secondary" [style.width] = "toggleSidebar()" >
+	<!-- Sidebar content -->
+	<div class="nav-pf-vertical nav-pf-vertical-with-sub-menus nav-pf-persistent-secondary" [ngStyle]="{'width': toggleSidebar()}">
 		<ul class="list-group">
 			<!-- Dashboard -->
 			<li class="list-group-item collapse-menu">
-			  <a href="#0">
-				<span class="fa fa-dashboard" title data-toggle="tooltip" data-placement="right" data-original-title="Dashboard"></span>
-				<span class="list-group-item-value"[ngStyle]="{'display': displayLeftMenuText()}">Dashboard</span>
-			  </a>
+				<a href="#" [ngStyle]="{'width': toggleSidebar()}">
+					<span class="fa fa-dashboard" title data-toggle="tooltip" data-placement="right" data-original-title="Dashboard"></span>
+					<span class="list-group-item-value" [ngStyle]="{'display': toggleSidebarText()}">Dashboard</span>
+				</a>
 			</li>
 			<!-- Accounts -->
 			<li class="list-group-item collapse-menu">
-			  <a href="#1">
-				<span class="fa fa-shield" title data-toggle="tooltip" data-placement="right" data-original-title="Accounts"></span>
-				<span class="list-group-item-value "[ngStyle]="{'display': displayLeftMenuText()}">Accounts</span>
-			  </a>
+				<a href="#" [ngStyle]="{'width': toggleSidebar()}">
+					<span class="pficon pficon-users" title data-toggle="tooltip" data-placement="right" data-original-title="Accounts"></span>
+					<span class="list-group-item-value" [ngStyle]="{'display': toggleSidebarText()}">Accounts</span>
+				</a>
 			</li>
 			<!-- Sessions -->
-			<li class="list-group-item collapse-menu " >
-			  <a href="#2">
-				<span class="fa fa-space-shuttle" title data-toggle="tooltip"  data-placement="right"data-original-title="Sessions"></span>
-				<span class="list-group-item-value"[ngStyle]="{'display': displayLeftMenuText()}">Sessions</span>
-			  </a>
+			<li class="list-group-item collapse-menu ">
+				<a href="#" [ngStyle]="{'width': toggleSidebar()}">
+					<span class="fa fa-space-shuttle" title data-toggle="tooltip" data-placement="right" data-original-title="Sessions"></span>
+					<span class="list-group-item-value" [ngStyle]="{'display': toggleSidebarText()}">Sessions</span>
+				</a>
 			</li>
 		</ul>
 	</div>
 
 	<!-- Main content -->
-	<div class="container-fluid container-cards-pf container-pf-nav-pf-vertical" id="contentContainer" [style.marginLeft] = "toggleSidebar()">
+	<div class="container-fluid container-cards-pf container-pf-nav-pf-vertical" id="contentContainer" [ngStyle]="{'margin-left': toggleSidebar()}">
 		<router-outlet></router-outlet>
 	</div>
 </div>

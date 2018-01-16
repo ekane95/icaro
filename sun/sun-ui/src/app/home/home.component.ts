@@ -84,7 +84,8 @@ export class HomeComponent implements OnInit {
     }
     this.currentLanguage = localStorage.getItem('language');
   }
-  displayLeftMenuText(){
+
+  toggleSidebarText(){
     if (this.toggleOnClick) {
      return 'inline';
     }else
