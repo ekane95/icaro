@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   public account_type = localStorage.getItem('account_type');
   private currentLanguage = localStorage.getItem('language');
   email: string;
+  displayText: string;
   constructor(
     private authenticationService: AuthenticationService,
     private profileService: ProfileService,
@@ -82,5 +83,14 @@ export class HomeComponent implements OnInit {
       localStorage.setItem('language', 'eng');
     }
     this.currentLanguage = localStorage.getItem('language');
+  }
+  displayLeftMenuText(){
+    if (this.toggleOnClick) {
+     return 'inline';
+    }else
+    {
+      return 'none';
+    }
+
   }
 }
