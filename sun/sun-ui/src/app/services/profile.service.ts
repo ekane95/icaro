@@ -2,7 +2,6 @@ import { HeaderService } from './../header/header.service';
 import { RequestOptions, Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { apConfig } from '../../global';
-import { Account, AccountFull } from '../interfaces/account';
 
 @Injectable()
 export class ProfileService {
@@ -47,16 +46,6 @@ export class ProfileService {
       .map(res => res.json());
   }
 
-  /**
-   * Make the call which create a new account
-   * @param account
-   */
-  postAccount(account: AccountFull) {
-    let body = JSON.stringify(account);
-    return this.http
-      .post(this.apiAccountsUrl, body, this.headerService.setHeader())
-      .map(res => res.json());
-  }
 
   getPreferences() {
     return this.http
