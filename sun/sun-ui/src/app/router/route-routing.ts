@@ -1,3 +1,4 @@
+import { AccountsComponent } from './../accounts/accounts.component';
 import { ProfileComponent } from './../profile/profile.component';
 import { AuthenticationGuard } from './../guards/authentication.guard';
 import { HomeComponent } from './../home/home.component';
@@ -17,6 +18,11 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+        canActivate: [AuthenticationGuard]
+      },
+      {
+        path: 'accounts',
+        component: AccountsComponent,
         canActivate: [AuthenticationGuard]
       }
     ]

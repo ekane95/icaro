@@ -75,14 +75,14 @@
 		<ul class="list-group">
 			<!-- Dashboard -->
 			<li class="list-group-item collapse-menu">
-				<a href="#" [ngStyle]="{'width': toggleSidebar()}">
+				<a routerLink="/home" [ngStyle]="{'width': toggleSidebar()}">
 					<span class="fa fa-dashboard" title data-toggle="tooltip" data-placement="right" data-original-title="Dashboard"></span>
 					<span class="list-group-item-value" [ngStyle]="{'display': toggleSidebarText()}">Dashboard</span>
 				</a>
 			</li>
 			<!-- Accounts -->
 			<li class="list-group-item collapse-menu">
-				<a href="#" [ngStyle]="{'width': toggleSidebar()}">
+				<a routerLink="/home/accounts" [ngStyle]="{'width': toggleSidebar()}">
 					<span class="pficon pficon-users" title data-toggle="tooltip" data-placement="right" data-original-title="Accounts"></span>
 					<span class="list-group-item-value" [ngStyle]="{'display': toggleSidebarText()}">Accounts</span>
 				</a>

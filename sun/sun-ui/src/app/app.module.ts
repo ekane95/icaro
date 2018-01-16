@@ -15,6 +15,7 @@ import { PatternFlyNgModule } from 'patternfly-ng';
 import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordModalComponent } from './modals/change-password-modal/change-password-modal.component';
 import { ProfileService } from './services/profile.service';
+import { AccountsComponent } from './accounts/accounts.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProfileService } from './services/profile.service';
     LoginComponent,
     HomeComponent,
     ProfileComponent,
-    ChangePasswordModalComponent
+    ChangePasswordModalComponent,
+    AccountsComponent
   ],
   imports: [
     BrowserModule,
