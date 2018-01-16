@@ -31,13 +31,13 @@ export class ChangePasswordModalComponent implements OnInit, OnDestroy {
   passwordLength = 0;
   apiResponse: string;
   messageSuccess = false;
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService) { }
 
   ngOnDestroy() {
     this.messageSuccess = true;
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
   private getPasswordLength(value: string = '') {
     this.passwordLength = value.length;
     this.getAccount();
@@ -70,6 +70,7 @@ export class ChangePasswordModalComponent implements OnInit, OnDestroy {
         }
       },
       error => {
+        this.apiResponse = 'error';
         console.log(error);
       }
     );

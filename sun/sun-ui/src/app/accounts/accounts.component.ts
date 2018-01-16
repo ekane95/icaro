@@ -2,7 +2,7 @@ import { Account } from './../interfaces/account';
 import { error } from 'util';
 import { ProfileService } from './../services/profile.service';
 import { Component, OnInit } from '@angular/core';
-import { ActionConfig, ListConfig, Action, ListEvent, PaginationConfig} from 'patternfly-ng';
+import { ActionConfig, ListConfig, Action, ListEvent, PaginationConfig } from 'patternfly-ng';
 import { PaginationEvent } from 'patternfly-ng/dist/src/app/pagination/pagination.module';
 
 @Component({
@@ -13,13 +13,14 @@ import { PaginationEvent } from 'patternfly-ng/dist/src/app/pagination/paginatio
 export class AccountsComponent implements OnInit {
   accountList: any;
   actionConfig: ActionConfig;
+  actionConfig1: ActionConfig;
   actionsText: string = '';
   allItems: any[];
   items: any[];
   listConfig: ListConfig;
   paginationConfig: PaginationConfig;
 
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
     this.getAllAccounts();
@@ -31,8 +32,8 @@ export class AccountsComponent implements OnInit {
       }],
       moreActions: [{
         id: 'action2',
-        title: 'Secondary Action 1',
-        tooltip: 'Do the first thing'
+        title: 'Edit',
+        tooltip: 'Edit Value'
       }, {
         id: 'action3',
         title: 'Secondary Action 2',
@@ -44,13 +45,21 @@ export class AccountsComponent implements OnInit {
       }]
     } as ActionConfig;
 
+    this.actionConfig1 = {
+      primaryActions: [{
+        id: 'action1',
+        title: 'Edit',
+        tooltip: 'Start the server'
+      }]
+    } as ActionConfig;
+
     this.listConfig = {
       dblClick: false,
       multiSelect: false,
       selectItems: false,
       selectionMatchProp: 'name',
       showCheckbox: true,
-      useExpandItems: false
+      useExpandItems: true
     } as ListConfig;
 
     this.paginationConfig = {
@@ -80,14 +89,16 @@ export class AccountsComponent implements OnInit {
       item.started = true;
     }
     this.actionsText = $event.title + ' selected\r\n' + this.actionsText;
+
+    console.log(item);
   }
 
   handleSelectionChange($event: ListEvent): void {
     this.actionsText = $event.selectedItems.length + ' items selected\r\n' + this.actionsText;
   }
 
-  handleClick($event: ListEvent): void {
-    this.actionsText = $event.item.name + ' clicked\r\n' + this.actionsText;
+  handleClick($event: ListEvent, item: any): void {
+    // this.actionsText = $event.item.name + ' clicked\r\n' + this.actionsText;
   }
 
   handlePageSize($event: PaginationEvent) {
@@ -98,6 +109,12 @@ export class AccountsComponent implements OnInit {
   handlePageNumber($event: PaginationEvent) {
     this.actionsText = 'Page Number: ' + $event.pageNumber + ' Selected' + '\n' + this.actionsText;
     this.updateItems();
+  }
+
+  editAccount(item: any): void {
+    for (let key in item) {
+      console.log(key + '=>' + item[key]);
+    }
   }
 
   // Pagination
