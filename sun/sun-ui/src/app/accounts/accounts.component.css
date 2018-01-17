@@ -2,6 +2,7 @@
     margin-top: 20px;
 }
 
-#save-button{
-    float: right;
+#deleteRows{
+    position: absolute;
+    right: 50px;
 }

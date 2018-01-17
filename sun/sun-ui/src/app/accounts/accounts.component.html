@@ -2,9 +2,12 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="form-group">
-            <button style="float:right" class="btn btn-default" type="button" id="deleteRows1">Delete Rows</button>
+          <br>
+            <button *ngIf="isDataArrived"  class="btn btn-default" type="button" id="deleteRows">Delete Rows</button>                                    
           <hr>
+          <br>
           <div *ngIf="!isDataArrived"  class="spinner spinner-lg"></div>
+          <br>
           <pfng-list 
                      [actionHeadingTemplate]="actionHeadingTemplate"
                      [actionTemplate]="actionTemplate"
@@ -20,10 +23,10 @@
                       <div class="list-pf-content-wrapper">
                         <div class="list-pf-main-content">
                           <div class="list-pf-title">ID</div>
-                          <div class="list-pf-title">NAME</div>
-                          <div class="list-pf-title">EMAIL</div>
-                          <div class="list-pf-title">TYPE</div>
-                          <div class="list-pf-title">USERNAME</div>
+                          <div class="list-pf-title description text-overflow-pf">USERNAME</div>
+                          <div class="list-pf-title description text-overflow-pf"> &nbsp;NAME</div>
+                          <div class="list-pf-title description text-overflow-pf"> &nbsp;EMAIL</div>
+                          <div class="list-pf-title description text-overflow-pf"> TYPE</div>
                         </div>
                       </div>
                     </ng-template>
@@ -31,17 +34,20 @@
               <div class="list-pf-content-wrapper">
                 <div class="list-pf-main-content">
                   <div class="list-pf-title">{{item.id}}</div>
-                  <div class="list-pf-title">{{item.name}}</div>
-                  <div class="list-pf-title">{{item.email}}</div>
-                  <div class="list-pf-title">{{item.type}}</div>
-                  <div class="list-pf-title">{{item.username}}</div>
+                  <div class="list-pf-title description text-overflow-pf">{{item.username}}</div>
+                  <div class="list-pf-title description text-overflow-pf">{{item.name}}</div>
+                  <div class="list-pf-title description text-overflow-pf">{{item.email}}</div>
+                  <div class="list-pf-title description text-overflow-pf">{{item.type}}</div>
                 </div>
               </div>
             </ng-template>
             <ng-template #actionHeadingTemplate let-item="item">
-                <span class="margin-left-40">ACTIONS</span>
+              <p>&nbsp;&nbsp;</p>
+            <span class="margin-left-40">ACTIONS</span>
+                
                 <!-- Place holder to match action button width below -->
                 <div class="actions-placeholder"></div>
+                <br>
               </ng-template>
             <ng-template #actionTemplate let-item="item" let-index="index">
               <pfng-action class="list-pf-actions"
@@ -68,7 +74,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
           <span class="pficon pficon-close"></span>
         </button>
-        <h4 class="modal-title">Edit Accounts</h4>
+        <h4 class="modal-title">Edit Account</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" name="changePasswordForm">
@@ -107,10 +113,6 @@
             <button  class="btn btn-danger" name="CancelEditAccount"  data-dismiss="modal">Cancel</button>
             <button class="btn btn-success" name="SaveEditAccount" type="submit" >Save</button>
           </div>
-          <!-- <div  class="alert alert-danger alert-dismissable">
-            <span class="pficon pficon-ok"></span>
-            <strong>Something went wrong!</strong>
-          </div> -->
         </form>
       </div>
     </div>
