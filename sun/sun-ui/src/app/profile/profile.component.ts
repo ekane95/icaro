@@ -2,10 +2,11 @@ import { NgForm } from '@angular/forms';
 import { ProfileService } from './../services/profile.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CardConfig, InfoStatusCardConfig } from 'patternfly-ng';
-import { Account, AccountFull } from '../interfaces/account';
 import { error } from 'util';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as jQuery from 'jquery';
 
+declare var $: any;
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'app-profile',
@@ -40,18 +41,6 @@ export class ProfileComponent implements OnInit {
     this.getAccount(this.id_profile);
     this.getPreferences();
   }
-
-  // private postAccount() {
-  //   this.profileService.postAccount(this.fullAccount).subscribe(
-  //     data => {
-  //       console.log(data);
-  //     },
-  //     error => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
-
   private getAccount(id: number) {
     this.profileService.getAccount(id).subscribe(
       data => {
