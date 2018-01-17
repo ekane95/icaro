@@ -21,7 +21,9 @@ declare var $: any;
 })
 export class AccountsComponent implements OnInit {
   @ViewChild('myModal') myModal: ElementRef;
-  public selectedItem: any[] = [];
+
+  itemToEdit: any[] = [];
+  seletedItem: any[] = [];
   isDataArrived = false;
   accountList: any[];
   actionConfig: ActionConfig;
@@ -85,12 +87,18 @@ export class AccountsComponent implements OnInit {
 
   handleAction($event: Action, item: any): void {
     if ($event.id === 'Edit') {
-      this.selectedItem = item;
+      this.itemToEdit = item;
       $(this.myModal.nativeElement).modal('show');
     }
   }
 
-  handleSelectionChange($event: ListEvent): void {}
+  handleSelectionChange($event: ListEvent): void {
+    if ($event.selectedItems.length > 0) {
+      this.seletedItem = $event.selectedItems;
+    } else {
+      this.seletedItem = [];
+    }
+  }
 
   handleClick($event: ListEvent, item: any): void {}
 
