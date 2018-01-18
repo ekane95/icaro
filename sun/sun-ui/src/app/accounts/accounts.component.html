@@ -2,7 +2,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="form-group">
-                       <button *ngIf="isDataArrived" [disabled]="!seletedItem?.length > 0" class="btn btn-default" type="button" id="deleteRows">Delete Rows</button>
+                       <button (click)="deleteMultiply();" *ngIf="isDataArrived" [disabled]="!seletedItem?.length > 0" class="btn btn-default" type="button" id="deleteRows">Delete Rows</button>
           <hr>
           <br>
           <div *ngIf="!isDataArrived"  class="spinner spinner-lg"></div>

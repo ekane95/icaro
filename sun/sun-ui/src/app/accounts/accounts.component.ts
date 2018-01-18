@@ -1,3 +1,4 @@
+import { AccountsService } from './../services/accounts.service';
 import { error } from 'util';
 import { ProfileService } from './../services/profile.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
@@ -22,6 +23,7 @@ declare var $: any;
 export class AccountsComponent implements OnInit {
   @ViewChild('myModal') myModal: ElementRef;
 
+  accountToPost: any={};
   itemToEdit: any[] = [];
   seletedItem: any[] = [];
   isDataArrived = false;
@@ -33,7 +35,7 @@ export class AccountsComponent implements OnInit {
   listConfig: ListConfig;
   paginationConfig: PaginationConfig;
 
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService, private accountsService: AccountsService) { }
   ngOnInit() {
     this.getAllAccounts();
     this.actionConfig = {
@@ -60,12 +62,12 @@ export class AccountsComponent implements OnInit {
       useExpandItems: false
     } as ListConfig;
 
-      this.paginationConfig = {
-        pageNumber: 1,
-        pageSize: 3,
-        pageSizeIncrements: [2, 3, 4],
-        totalItems: this.accountList.length
-      } as PaginationConfig;
+    this.paginationConfig = {
+      pageNumber: 1,
+      pageSize: 3,
+      pageSizeIncrements: [2, 3, 4],
+      totalItems: this.accountList.length
+    } as PaginationConfig;
 
     this.updateItems();
   }
@@ -90,6 +92,30 @@ export class AccountsComponent implements OnInit {
       this.itemToEdit = item;
       $(this.myModal.nativeElement).modal('show');
     }
+
+    console.log(item.id);
+    this.accountsService.deleteAccount(item.id)
+    .subscribe(data => { console.log(data); }, error => { console.log(error); });
+  }
+
+  private postNewAccount() {
+    this.accountToPost.uuid = "string";
+    this.accountToPost.type = "string";
+    this.accountToPost.name = "string";
+    this.accountToPost.username = "string";
+    this.accountToPost.password = "string";
+    this.accountToPost.email = "string";
+    this.accountToPost.hotspot_id = 2;
+    this.accountsService.postAccount(this.accountToPost)
+      .subscribe(data => { console.log(data); }, error => { console.log(error); });
+  }
+
+  deleteMultiply(): void {
+    for (let i = 0; i <= this.seletedItem.length - 1; i++) {
+      console.log(this.seletedItem[i].id);
+      this.accountsService.deleteAccount(this.seletedItem[i].id)
+      .subscribe(data => { console.log(data); }, error => { console.log(error); });
+    }
   }
 
   handleSelectionChange($event: ListEvent): void {
@@ -98,9 +124,11 @@ export class AccountsComponent implements OnInit {
     } else {
       this.seletedItem = [];
     }
+
+    console.log(this.seletedItem);
   }
 
-  handleClick($event: ListEvent, item: any): void {}
+  handleClick($event: ListEvent, item: any): void { }
 
   handlePageSize($event: PaginationEvent) {
     this.updateItems();
@@ -114,8 +142,8 @@ export class AccountsComponent implements OnInit {
   updateItems() {
     this.items = this.accountList
       .slice(
-        (this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize,
-        this.paginationConfig.totalItems
+      (this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize,
+      this.paginationConfig.totalItems
       )
       .slice(0, this.paginationConfig.pageSize);
   }
