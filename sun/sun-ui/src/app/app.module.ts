@@ -1,3 +1,4 @@
+import { AccountsService } from './services/accounts.service';
 import { HeaderService } from './header/header.service';
 import { AuthenticationService } from './services/authentication.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -40,7 +41,7 @@ import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-tra
       deps: [Http]
   })
   ],
-  providers: [AuthenticationService, AuthenticationGuard, ProfileService, HeaderService],
+  providers: [AuthenticationService, AuthenticationGuard, ProfileService, HeaderService, AccountsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
