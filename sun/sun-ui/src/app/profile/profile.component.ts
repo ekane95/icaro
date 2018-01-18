@@ -4,9 +4,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CardConfig, InfoStatusCardConfig } from 'patternfly-ng';
 import { error } from 'util';
 import { Router, ActivatedRoute } from '@angular/router';
-import * as jQuery from 'jquery';
 
-declare var $: any;
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'app-profile',
@@ -23,6 +21,8 @@ export class ProfileComponent implements OnInit {
   preferenceArray: any[] = [];
   passwordLength: number;
   apiResponse: string;
+  private isdataArrived = false;
+
 
   constructor(
     private profileService: ProfileService,
@@ -37,15 +37,17 @@ export class ProfileComponent implements OnInit {
       noPadding: false,
       topBorder: true
     } as CardConfig;
-
     this.getAccount(this.id_profile);
     this.getPreferences();
   }
+
   private getAccount(id: number) {
     this.profileService.getAccount(id).subscribe(
       data => {
         this.accountArray = data;
         console.log(data);
+        this.isdataArrived = true;
+
       },
       error => {
         console.log(error.json());

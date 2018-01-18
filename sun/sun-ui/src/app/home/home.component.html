@@ -51,18 +51,10 @@
 				</a>
 				<!-- Select language (English, Italian) -->
 				<ul class="dropdown-menu" aria-labelledby="languagesDropdown">
-					<!-- English -->
-					<li>
-						<a (click)=" getLanguage('eng')" class="english">
-							<i [ngClass]="{'i18n':currentLanguage!='eng'}"  class="fa fa-check" aria-hidden="true"></i>
-							English
-						</a>
-					</li>
-					<!-- Italian -->
-					<li>
-						<a (click)=" getLanguage('it')" class="italian">
-							<i [ngClass]="{'i18n':currentLanguage!='it'}" class="fa fa-check" aria-hidden="true"></i>
-							Italian
+					<li *ngFor="let item of allLanguages" >
+						<a (click)=" getLanguage(item)" >
+							<i [ngClass]="{'i18n':currentLanguage!=item}" class="fa fa-check" aria-hidden="true"></i>
+							{{langFullName[item]}}
 						</a>
 					</li>
 				</ul>
@@ -77,21 +69,21 @@
 			<li class="list-group-item collapse-menu">
 				<a routerLink="/home" [ngStyle]="{'width': toggleSidebar()}">
 					<span class="fa fa-dashboard" title data-toggle="tooltip" data-placement="right" data-original-title="Dashboard"></span>
-					<span class="list-group-item-value" [ngStyle]="{'display': toggleSidebarText()}">Dashboard</span>
+					<span class="list-group-item-value" [ngStyle]="{'display': toggleSidebarText()}">{{ 'HOME.Dashboard' | translate }}</span>
 				</a>
 			</li>
 			<!-- Accounts -->
 			<li class="list-group-item collapse-menu">
 				<a routerLink="/home/accounts" [ngStyle]="{'width': toggleSidebar()}">
 					<span class="pficon pficon-users" title data-toggle="tooltip" data-placement="right" data-original-title="Accounts"></span>
-					<span class="list-group-item-value" [ngStyle]="{'display': toggleSidebarText()}">Accounts</span>
+					<span class="list-group-item-value" [ngStyle]="{'display': toggleSidebarText()}">{{ 'HOME.Accounts' | translate }}</span>
 				</a>
 			</li>
 			<!-- Sessions -->
 			<li class="list-group-item collapse-menu ">
 				<a href="#" [ngStyle]="{'width': toggleSidebar()}">
 					<span class="fa fa-space-shuttle" title data-toggle="tooltip" data-placement="right" data-original-title="Sessions"></span>
-					<span class="list-group-item-value" [ngStyle]="{'display': toggleSidebarText()}">Sessions</span>
+					<span class="list-group-item-value" [ngStyle]="{'display': toggleSidebarText()}">{{ 'HOME.Sessions' | translate }}</span>
 				</a>
 			</li>
 		</ul>

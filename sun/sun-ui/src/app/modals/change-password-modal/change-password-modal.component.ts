@@ -1,15 +1,7 @@
 import { NgForm } from '@angular/forms';
 import { ProfileService } from '../../services/profile.service';
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ViewChild,
-  OnDestroy,
-  ElementRef
-} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef} from '@angular/core';
 import { error } from 'util';
-import { ModalDirective } from 'ngx-bootstrap/modal';
 import * as jQuery from 'jquery';
 
 declare var $: any;
@@ -19,10 +11,9 @@ declare var $: any;
   templateUrl: './change-password-modal.component.html',
   styleUrls: ['./change-password-modal.component.css']
 })
-export class ChangePasswordModalComponent implements OnInit, OnDestroy {
+export class ChangePasswordModalComponent implements OnInit {
   @ViewChild('myModal') myModal: ElementRef;
   private id_profile = Number(localStorage.getItem('id'));
-
   model: any = {};
   items: any[] = [];
   account: any = {};
@@ -30,32 +21,19 @@ export class ChangePasswordModalComponent implements OnInit, OnDestroy {
   preferenceArray: any[] = [];
   passwordLength = 0;
   apiResponse: string;
-  messageSuccess = false;
-  constructor(private profileService: ProfileService) { }
 
-  ngOnDestroy() {
-    this.messageSuccess = true;
+  constructor(private profileService: ProfileService) {}
+
+  ngOnInit() {
+     this.getAccount(this.id_profile);
   }
 
-  ngOnInit() { }
-  private getPasswordLength(value: string = '') {
-    this.passwordLength = value.length;
-    this.getAccount();
-  }
-
-  private getAccount() {
-    this.profileService.getAccount(this.id_profile).subscribe(
-      data => {
-        this.fullAccount = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
+  private getPasswordLength(value: string) {
+    if (value !== undefined) this.passwordLength = value.length;
   }
 
   private changePassword(changepasswordform: NgForm) {
-    this.account.email = this.fullAccount.email;
+   this.account.email = this.fullAccount.email;
     this.account.name = this.fullAccount.name;
     this.account.username = this.fullAccount.username;
     this.account.password = this.model.newPassword;
@@ -75,6 +53,18 @@ export class ChangePasswordModalComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+  private getAccount(id:number) {
+    this.profileService.getAccount(id).subscribe(
+      data => {
+        this.fullAccount = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
 
   private resetFields(changepasswordform: NgForm) {
     changepasswordform.reset();

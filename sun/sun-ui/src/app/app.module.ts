@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http/';
+import { HttpModule, Http } from '@angular/http/';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordModalComponent } from './modals/change-password-modal/change-password-modal.component';
 import { ProfileService } from './services/profile.service';
 import { AccountsComponent } from './accounts/accounts.component';
+import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,12 @@ import { AccountsComponent } from './accounts/accounts.component';
     HttpClientModule,
     HttpModule,
     FormsModule,
-    PatternFlyNgModule
+    PatternFlyNgModule,
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (http: Http) => new TranslateStaticLoader(http, '/assets/i18n', '.json'),
+      deps: [Http]
+  })
   ],
   providers: [AuthenticationService, AuthenticationGuard, ProfileService, HeaderService],
   bootstrap: [AppComponent]

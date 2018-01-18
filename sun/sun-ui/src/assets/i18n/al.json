@@ -1,0 +1,25 @@
+{
+    "HOME": {
+      "Dashboard": "Dashboard",
+      "Accounts": "Accounts",
+      "Sessions": "Sesioni",
+      "English" : "English",
+      "Italian" : "Italian",
+      "Profile":"Profile",
+      "Logout" : "Logout"
+    },
+    "PROFILE": {
+      "Information": "Informacione",
+      "Name": "Emri",
+      "Uuid": "UUID",
+      "Email": "Adresa Email",
+      "Profile": "Profili",
+      "ChangePassword": "Ndrysho Passwordin",
+      "Preferences": "Preferencat",
+      "NoData": "Nuk u gjeten te dhena!",
+      "OldPassword":"Passwordi Aktual",
+      "NewPassword":"Passwordi i ri",
+      "ConfirmPassword":"Konfirmo Passwordin"
+    }
+  }
+  

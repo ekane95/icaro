@@ -25,7 +25,7 @@ export class AccountsComponent implements OnInit {
   itemToEdit: any[] = [];
   seletedItem: any[] = [];
   isDataArrived = false;
-  accountList: any[];
+  accountList: any[] = [];
   actionConfig: ActionConfig;
   actionConfig1: ActionConfig;
   actionsText: string = '';
@@ -60,12 +60,12 @@ export class AccountsComponent implements OnInit {
       useExpandItems: false
     } as ListConfig;
 
-    this.paginationConfig = {
-      pageNumber: 1,
-      pageSize: 3,
-      pageSizeIncrements: [2, 3, 4],
-      totalItems: this.accountList.length
-    } as PaginationConfig;
+      this.paginationConfig = {
+        pageNumber: 1,
+        pageSize: 3,
+        pageSizeIncrements: [2, 3, 4],
+        totalItems: this.accountList.length
+      } as PaginationConfig;
 
     this.updateItems();
   }
