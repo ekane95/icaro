@@ -23,6 +23,7 @@ declare var $: any;
 })
 export class AccountsComponent implements OnInit {
   @ViewChild('myModal') myModal: ElementRef;
+  @ViewChild('deleteModal') deleteModal: ElementRef;
 
   isItemDeleted: boolean;
   apiResponse: string;
@@ -61,7 +62,9 @@ export class AccountsComponent implements OnInit {
     if ($event.id === 'Edit') {
       this.getAccountById(item.id);
     } else {
-      this.deleteAccountById(item.id);
+      console.log("Delete button has been pressed");
+      $(this.deleteModal.nativeElement).modal('show');
+      // this.deleteAccountById(item.id);
     }
   }
 
@@ -99,17 +102,18 @@ export class AccountsComponent implements OnInit {
    * Delete acconts, get executed when delete rows is clicked
    */
   deleteMultiply(): void {
-    for (let i = 0; i <= this.seletedItem.length - 1; i++) {
-      console.log(this.seletedItem[i].id);
-      this.accountsService.deleteAccount(this.seletedItem[i].id).subscribe(
-        data => {
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
+    // for (let i = 0; i <= this.seletedItem.length - 1; i++) {
+    //   console.log(this.seletedItem[i].id);
+    //   this.accountsService.deleteAccount(this.seletedItem[i].id).subscribe(
+    //     data => {
+    //       console.log(data);
+    //     },
+    //     error => {
+    //       console.log(error);
+    //     }
+    //   );
+    // }
+    console.log("delete Rows button has been pressed (Past perfect continues)");
   }
 
   handleSelectionChange($event: ListEvent): void {
@@ -180,7 +184,7 @@ export class AccountsComponent implements OnInit {
           tooltip: 'Edit Accounts'
         },
         {
-          id: 'action2',
+          id: 'delete',
           title: 'Delete',
           tooltip: 'Delete account'
         }

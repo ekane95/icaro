@@ -6,3 +6,20 @@
     position: absolute;
     right: 50px;
 }
+
+.header-left {
+	text-align: left!important;
+}
+
+.bottom-HIGH-alarm {
+	border-bottom: 4px solid #C00;
+}
+
+.large {
+	font-size: 18px;
+	text-align: center;
+}
+
+#delete-account-modal .modal-footer {
+	padding-bottom: 0;
+}
