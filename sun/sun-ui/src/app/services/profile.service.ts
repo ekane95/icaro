@@ -13,19 +13,10 @@ export class ProfileService {
   constructor(private http: Http, private headerService: HeaderService) {}
 
   /**
-   * Get Accounts list from API
-   */
-  getAllAccounts() {
-    return this.http
-      .get(this.apiAccountsUrl, this.headerService.setHeader())
-      .map(res => res.json());
-  }
-
-  /**
    * Get Account in base of id
    * @param id
    */
-  getAccount(id: number) {
+  getProfilebyId(id: number) {
     return this.http
       .get(this.apiAccountsUrl + '/' + id, this.headerService.setHeader())
       .map(res => res.json());
@@ -46,6 +37,16 @@ export class ProfileService {
       .map(res => res.json());
   }
 
+  /**
+   * Make the call which create a new account
+   * @param account
+   */
+  postAccount(account: any) {
+    let body = JSON.stringify(account);
+    return this.http
+      .post(this.apiAccountsUrl, body, this.headerService.setHeader())
+      .map(res => res.json());
+  }
 
   getPreferences() {
     return this.http

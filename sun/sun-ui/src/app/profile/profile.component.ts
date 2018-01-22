@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
   }
 
   private getAccount(id: number) {
-    this.profileService.getAccount(id).subscribe(
+    this.profileService.getProfilebyId(id).subscribe(
       data => {
         this.accountArray = data;
         console.log(data);

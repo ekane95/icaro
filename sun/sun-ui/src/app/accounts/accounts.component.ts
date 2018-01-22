@@ -1,4 +1,3 @@
-
 import { NgForm } from '@angular/forms';
 import { AccountsService } from './../services/accounts.service';
 import { error } from 'util';
@@ -9,9 +8,7 @@ import {
   ListConfig,
   Action,
   ListEvent,
-  PaginationConfig,
-  ToolbarConfig,
-  NotificationType
+  PaginationConfig
 } from 'patternfly-ng';
 import { PaginationEvent } from 'patternfly-ng/dist/src/app/pagination/pagination.module';
 import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
@@ -27,8 +24,7 @@ declare var $: any;
 export class AccountsComponent implements OnInit {
   @ViewChild('myModal') myModal: ElementRef;
 
-
-  objectLength: number;
+  isItemDeleted: boolean;
   apiResponse: string;
   accountToPost: any = {};
   itemToEdit: any = {};
@@ -41,17 +37,13 @@ export class AccountsComponent implements OnInit {
   listConfig: ListConfig;
   paginationConfig: PaginationConfig;
 
-
-  constructor(
-    private profileService: ProfileService,
-    private accountsService: AccountsService
-  ) {}
+  constructor(private accountsService: AccountsService) {}
   ngOnInit() {
     this.getAllAccounts();
   }
 
   private getAllAccounts() {
-    this.profileService.getAllAccounts().subscribe(
+    this.accountsService.getAllAccounts().subscribe(
       data => {
         this.isDataArrived = true;
         this.accountList = data;
@@ -65,41 +57,22 @@ export class AccountsComponent implements OnInit {
   }
 
   // Actions
-
   handleAction($event: Action, item: any): void {
     if ($event.id === 'Edit') {
-      this.profileService.getAccount(item.id).subscribe(
-        data => {
-          this.itemToEdit = data;
-        },
-        error => {}
-      );
-      console.log(this.itemToEdit.name);
-      $(this.myModal.nativeElement).modal('show');
+      this.getAccountById(item.id);
     } else {
-      console.log(item.id);
-      this.accountsService.deleteAccount(item.id).subscribe(
-        data => {
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      this.deleteAccountById(item.id);
     }
   }
 
-  private postNewAccount() {
-    this.accountToPost.uuid = 'string';
-    this.accountToPost.type = 'string';
-    this.accountToPost.name = 'string';
-    this.accountToPost.username = 'string';
-    this.accountToPost.password = 'string';
-    this.accountToPost.email = 'string';
-    this.accountToPost.hotspot_id = 2;
-    this.accountsService.postAccount(this.accountToPost).subscribe(
+  /**
+   * Delete account by id
+   * @param id
+   */
+  private deleteAccountById(id: number) {
+    this.accountsService.deleteAccount(id).subscribe(
       data => {
-        console.log(data);
+        this.isItemDeleted = true;
       },
       error => {
         console.log(error);
@@ -107,6 +80,24 @@ export class AccountsComponent implements OnInit {
     );
   }
 
+  /**
+   * Get account y id
+   * @param id
+   */
+  private getAccountById(id: number) {
+    this.apiResponse = '';
+    this.accountsService.getAccountbyId(id).subscribe(
+      data => {
+        this.itemToEdit = data;
+        $(this.myModal.nativeElement).modal('show');
+      },
+      error => {}
+    );
+  }
+
+  /**
+   * Delete acconts, get executed when delete rows is clicked
+   */
   deleteMultiply(): void {
     for (let i = 0; i <= this.seletedItem.length - 1; i++) {
       console.log(this.seletedItem[i].id);
@@ -118,30 +109,6 @@ export class AccountsComponent implements OnInit {
           console.log(error);
         }
       );
-    }
-
-    console.log(item.id);
-    this.accountsService.deleteAccount(item.id)
-    .subscribe(data => { console.log(data); }, error => { console.log(error); });
-  }
-
-  private postNewAccount() {
-    this.accountToPost.uuid = "string";
-    this.accountToPost.type = "string";
-    this.accountToPost.name = "string";
-    this.accountToPost.username = "string";
-    this.accountToPost.password = "string";
-    this.accountToPost.email = "string";
-    this.accountToPost.hotspot_id = 2;
-    this.accountsService.postAccount(this.accountToPost)
-      .subscribe(data => { console.log(data); }, error => { console.log(error); });
-  }
-
-  deleteMultiply(): void {
-    for (let i = 0; i <= this.seletedItem.length - 1; i++) {
-      console.log(this.seletedItem[i].id);
-      this.accountsService.deleteAccount(this.seletedItem[i].id)
-      .subscribe(data => { console.log(data); }, error => { console.log(error); });
     }
   }
 
@@ -155,8 +122,8 @@ export class AccountsComponent implements OnInit {
     console.log(this.seletedItem);
   }
 
-
   handleClick($event: ListEvent, item: any): void {}
+
   handlePageSize($event: PaginationEvent) {
     this.updateItems();
   }
@@ -169,8 +136,8 @@ export class AccountsComponent implements OnInit {
   updateItems() {
     this.items = this.accountList
       .slice(
-      (this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize,
-      this.paginationConfig.totalItems
+        (this.paginationConfig.pageNumber - 1) * this.paginationConfig.pageSize,
+        this.paginationConfig.totalItems
       )
       .slice(0, this.paginationConfig.pageSize);
   }
@@ -179,15 +146,17 @@ export class AccountsComponent implements OnInit {
    * Edit accounts, when user click save
    * @param editAccount
    */
-
   editAccount(editAccount: NgForm) {
-    console.log(this.itemToEdit);
-    let accountToEdit: EditAccount = {};
-    accountToEdit.id = this.itemToEdit.id;
-    accountToEdit.name = this.itemToEdit.name;
-    accountToEdit.username = this.itemToEdit.username;
-    accountToEdit.email = this.itemToEdit.email;
-    this.profileService.changePassword(accountToEdit).subscribe(
+    let accountToEdit = <EditAccount>this.itemToEdit;
+    this.editAccountbyId(accountToEdit);
+  }
+
+  /**
+   *Edit account, gets value from form
+   * @param accountToEdit
+   */
+  private editAccountbyId(accountToEdit: EditAccount) {
+    this.accountsService.editAccount(accountToEdit).subscribe(
       data => {
         this.apiResponse = data.status;
         $(this.myModal.nativeElement).modal('hide');
@@ -200,7 +169,7 @@ export class AccountsComponent implements OnInit {
   }
 
   /**
-   * Configuration of pagination
+   * Configuration of pagination and actions
    */
   private configureListPagination() {
     this.actionConfig = {
